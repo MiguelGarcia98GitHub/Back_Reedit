@@ -11,6 +11,8 @@ import { CommunitiesModule } from './communities/communities.module';
 import { Community } from './communities/entities/community.entity';
 import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/entities/post.entity';
+import { CommentsModule } from './comments/comments.module';
+import { Comment } from './comments/entities/comment.entity';
 
 @Module({
   imports: [
@@ -38,7 +40,7 @@ import { Post } from './posts/entities/post.entity';
           // ssl: {
           //   rejectUnauthorized: false,
           // },
-          entities: [User, Community, Post],
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
           synchronize: true,
         };
       },
@@ -47,6 +49,7 @@ import { Post } from './posts/entities/post.entity';
     UsersModule,
     CommunitiesModule,
     PostsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

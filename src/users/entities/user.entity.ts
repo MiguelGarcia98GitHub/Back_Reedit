@@ -1,4 +1,5 @@
 import { Exclude } from 'class-transformer';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { Community } from 'src/communities/entities/community.entity';
 import { Post } from 'src/posts/entities/post.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -22,4 +23,7 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.community)
   posts: Post[];
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments: Comment[];
 }

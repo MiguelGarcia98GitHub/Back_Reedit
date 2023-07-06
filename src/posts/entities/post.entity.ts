@@ -1,10 +1,12 @@
 import { Community } from 'src/communities/entities/community.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -26,4 +28,7 @@ export class Post {
 
   @ManyToOne(() => Community, (community) => community.posts)
   community: Community;
+
+  @OneToMany(() => Comment, (comment) => comment.post, { eager: false })
+  comments: Comment[];
 }
