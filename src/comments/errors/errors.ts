@@ -15,3 +15,12 @@ export class CreateErrors {
     );
   }
 }
+
+export class GetCommentsByPostIdErrors {
+  postNotFound() {
+    return new HttpException(
+      'No post was found with that Id',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}

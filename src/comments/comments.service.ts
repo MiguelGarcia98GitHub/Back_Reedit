@@ -5,7 +5,7 @@ import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { Post } from 'src/posts/entities/post.entity';
 import { Comment } from './entities/comment.entity';
-import { CreateErrors } from './errors/errors';
+import { CreateErrors, GetCommentsByPostIdErrors } from './errors/errors';
 
 @Injectable()
 export class CommentsService {
@@ -56,8 +56,12 @@ export class CommentsService {
     });
 
     if (!checkPost) {
-      // TODO
+      throw new GetCommentsByPostIdErrors().postNotFound();
     }
+
+    checkPost.comments.forEach((comment) => {
+      delete comment.user.password;
+    });
 
     return checkPost.comments;
   }
