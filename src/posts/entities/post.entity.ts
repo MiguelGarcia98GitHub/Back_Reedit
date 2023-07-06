@@ -18,10 +18,11 @@ export class Post {
   @Column()
   title: string;
 
-  @Column({
-    nullable: true,
-  })
+  @Column()
   description: string;
+
+  @Column()
+  imageUrl: string;
 
   @ManyToOne(() => User, (user) => user.posts)
   creator: User;
@@ -29,6 +30,6 @@ export class Post {
   @ManyToOne(() => Community, (community) => community.posts)
   community: Community;
 
-  @OneToMany(() => Comment, (comment) => comment.post, { eager: false })
+  @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
 }

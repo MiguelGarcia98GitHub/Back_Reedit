@@ -54,7 +54,12 @@ export class PostsService {
       where: {
         id: communityId,
       },
-      relations: ['posts', 'posts.creator'],
+      relations: [
+        'posts',
+        'posts.creator',
+        'posts.comments',
+        'posts.comments.user',
+      ],
     });
 
     if (!checkCommunity) {
