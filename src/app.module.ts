@@ -7,6 +7,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './users/entities/user.entity';
 
 import { UsersController } from './users/users.controller';
+import { CommunitiesModule } from './communities/communities.module';
+import { Community } from './communities/entities/community.entity';
 
 @Module({
   imports: [
@@ -34,13 +36,14 @@ import { UsersController } from './users/users.controller';
           // ssl: {
           //   rejectUnauthorized: false,
           // },
-          entities: [User],
+          entities: [User, Community],
           synchronize: true,
         };
       },
     }),
     // after db setup, import the actual modules being used
     UsersModule,
+    CommunitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
