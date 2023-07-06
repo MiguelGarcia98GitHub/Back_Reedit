@@ -9,6 +9,8 @@ import { User } from './users/entities/user.entity';
 import { UsersController } from './users/users.controller';
 import { CommunitiesModule } from './communities/communities.module';
 import { Community } from './communities/entities/community.entity';
+import { PostsModule } from './posts/posts.module';
+import { Post } from './posts/entities/post.entity';
 
 @Module({
   imports: [
@@ -36,7 +38,7 @@ import { Community } from './communities/entities/community.entity';
           // ssl: {
           //   rejectUnauthorized: false,
           // },
-          entities: [User, Community],
+          entities: [User, Community, Post],
           synchronize: true,
         };
       },
@@ -44,6 +46,7 @@ import { Community } from './communities/entities/community.entity';
     // after db setup, import the actual modules being used
     UsersModule,
     CommunitiesModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
