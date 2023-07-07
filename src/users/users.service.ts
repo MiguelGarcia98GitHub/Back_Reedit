@@ -57,7 +57,7 @@ export class UsersService {
       throw new LoginErrors().passwordNotCorrect();
     }
 
-    const payload = { email: user.email, id: user.id };
+    const payload = { email: user.email, id: user.id, username: user.username };
     return {
       access_token: this.jwtService.sign(payload),
     };
