@@ -16,6 +16,9 @@ export class Community {
   @Column()
   name: string;
 
+  @Column()
+  imageUrl: string;
+
   @ManyToOne(() => User, (user) => user.communities)
   creator: User;
 

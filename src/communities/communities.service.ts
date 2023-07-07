@@ -41,6 +41,7 @@ export class CommunitiesService {
 
     const community = new Community();
     community.name = createCommunityDto.name;
+    community.imageUrl = createCommunityDto.imageUrl;
     community.creator = checkUser;
 
     const savedCommunity = await this.communitiesRepository.save(community);
