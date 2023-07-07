@@ -24,4 +24,9 @@ export class PostsController {
   getPostsByCommunityId(@Param('communityId') communityId: number) {
     return this.postsService.getPostsByCommunityId(communityId);
   }
+
+  @Get()
+  getAllPosts() {
+    return this.postsService.getAllPosts();
+  }
 }

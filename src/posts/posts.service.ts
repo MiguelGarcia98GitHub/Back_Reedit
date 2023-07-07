@@ -68,4 +68,12 @@ export class PostsService {
 
     return checkCommunity.posts;
   }
+
+  async getAllPosts() {
+    const allPosts = await this.postsRepository.find({
+      relations: ['community'],
+    });
+
+    return allPosts;
+  }
 }
