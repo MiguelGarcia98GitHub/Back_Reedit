@@ -10,6 +10,7 @@ import {
   CreateErrors,
   GetPostByIdErrors,
   GetPostsByCommunityIdErrors,
+  GetPostsByCommunityNameErrors,
 } from './errors/errors';
 
 @Injectable()
@@ -83,11 +84,12 @@ export class PostsService {
         'posts.creator',
         'posts.comments',
         'posts.comments.user',
+        'posts.community',
       ],
     });
 
     if (!checkCommunity) {
-      throw new GetPostsByCommunityIdErrors().communityNotFound();
+      throw new GetPostsByCommunityNameErrors().communityNotFound();
     }
 
     return checkCommunity.posts;
