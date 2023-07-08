@@ -78,4 +78,10 @@ export class CommunitiesService {
 
     return checkUser.communities;
   }
+
+  async getAllCommunities() {
+    const allCommunities = await this.communitiesRepository.find();
+
+    return allCommunities;
+  }
 }

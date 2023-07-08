@@ -30,4 +30,9 @@ export class CommunitiesController {
   getCommunitiesByUserId(@Param('userId') userId: number) {
     return this.communitiesService.getCreatedCommunitiesByUserId(userId);
   }
+
+  @Get()
+  getAllCommunities() {
+    return this.communitiesService.getAllCommunities();
+  }
 }
