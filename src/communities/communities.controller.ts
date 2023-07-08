@@ -20,8 +20,10 @@ export class CommunitiesController {
   }
 
   @Get('communityName/:communityName')
-  GetCommunityByCommunityNameErrors(@Param('communityId') communityId: string) {
-    return this.communitiesService.getCommunityByCommunityName(communityId);
+  GetCommunityByCommunityNameErrors(
+    @Param('communityName') communityName: string,
+  ) {
+    return this.communitiesService.getCommunityByCommunityName(communityName);
   }
 
   @Get('user/:userId')
