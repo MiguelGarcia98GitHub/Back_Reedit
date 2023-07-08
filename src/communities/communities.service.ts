@@ -51,6 +51,19 @@ export class CommunitiesService {
     return savedCommunity;
   }
 
+  async getCommunityByCommunityName(communityName: string) {
+    const checkCommunity = await this.communitiesRepository.findOne({
+      where: {
+        name: communityName,
+      },
+    });
+
+    if (!checkCommunity) {
+    }
+
+    return checkCommunity;
+  }
+
   async getCreatedCommunitiesByUserId(userId: number) {
     const checkUser = await this.usersRepository.findOne({
       where: {

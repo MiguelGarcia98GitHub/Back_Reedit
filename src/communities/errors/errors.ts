@@ -16,6 +16,15 @@ export class CreateErrors {
   }
 }
 
+export class GetCommunityByCommunityNameErrors {
+  nameNotFound() {
+    return new HttpException(
+      'No community was found with that name',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}
+
 export class GetCreatedCommunitiesByUserErrors {
   userNotFound() {
     return new HttpException(

@@ -24,3 +24,21 @@ export class GetPostsByCommunityIdErrors {
     );
   }
 }
+
+export class GetPostsByCommunityNameErrors {
+  communityNotFound() {
+    return new HttpException(
+      'No community was found with that name',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}
+
+export class GetPostByIdErrors {
+  postNotFound() {
+    return new HttpException(
+      'No post was found with that Id',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+}

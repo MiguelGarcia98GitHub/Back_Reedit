@@ -19,6 +19,11 @@ export class CommunitiesController {
     return this.communitiesService.create(createCommunityDto);
   }
 
+  @Get('communityName/:communityName')
+  GetCommunityByCommunityNameErrors(@Param('communityId') communityId: string) {
+    return this.communitiesService.getCommunityByCommunityName(communityId);
+  }
+
   @Get('user/:userId')
   getCommunitiesByUserId(@Param('userId') userId: number) {
     return this.communitiesService.getCreatedCommunitiesByUserId(userId);

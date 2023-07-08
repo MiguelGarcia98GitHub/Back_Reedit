@@ -25,8 +25,18 @@ export class PostsController {
     return this.postsService.getPostsByCommunityId(communityId);
   }
 
+  @Get('/communityName/:communityName')
+  getPostsByCommunityName(@Param('communityName') communityName: string) {
+    return this.postsService.getPostsByCommunityName(communityName);
+  }
+
   @Get()
   getAllPosts() {
     return this.postsService.getAllPosts();
+  }
+
+  @Get('/:postId')
+  getPostById(@Param('postId') postId: number) {
+    return this.postsService.getPostById(postId);
   }
 }

@@ -6,7 +6,11 @@ import { Post } from './entities/post.entity';
 import { Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Community } from 'src/communities/entities/community.entity';
-import { CreateErrors, GetPostsByCommunityIdErrors } from './errors/errors';
+import {
+  CreateErrors,
+  GetPostByIdErrors,
+  GetPostsByCommunityIdErrors,
+} from './errors/errors';
 
 @Injectable()
 export class PostsService {
@@ -69,11 +73,46 @@ export class PostsService {
     return checkCommunity.posts;
   }
 
+  async getPostsByCommunityName(communityName: string): Promise<Post[]> {
+    const checkCommunity = await this.communitiesRepository.findOne({
+      where: {
+        name: communityName,
+      },
+      relations: [
+        'posts',
+        'posts.creator',
+        'posts.comments',
+        'posts.comments.user',
+      ],
+    });
+
+    if (!checkCommunity) {
+      throw new GetPostsByCommunityIdErrors().communityNotFound();
+    }
+
+    return checkCommunity.posts;
+  }
+
   async getAllPosts() {
     const allPosts = await this.postsRepository.find({
       relations: ['community'],
     });
 
     return allPosts;
+  }
+
+  async getPostById(postId: number) {
+    const post = await this.postsRepository.findOne({
+      where: {
+        id: postId,
+      },
+      relations: ['comments', 'community', 'comments.user'],
+    });
+
+    if (!post) {
+      throw new GetPostByIdErrors().postNotFound();
+    }
+
+    return post;
   }
 }
