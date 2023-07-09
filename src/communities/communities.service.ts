@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import {
   CreateErrors,
+  GetCommunityByCommunityNameErrors,
   GetCreatedCommunitiesByUserErrors,
 } from './errors/errors';
 
@@ -59,6 +60,7 @@ export class CommunitiesService {
     });
 
     if (!checkCommunity) {
+      throw new GetCommunityByCommunityNameErrors().nameNotFound();
     }
 
     return checkCommunity;
