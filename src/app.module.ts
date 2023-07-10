@@ -42,7 +42,6 @@ import { Comment } from './comments/entities/comment.entity';
           username: configService.get<string>('user_name'),
           password: configService.get<string>('password'),
           port: configService.get<number>('db_port'),
-
           // ssl: {
           //   rejectUnauthorized: false,
           // },
