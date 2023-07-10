@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { Post } from 'src/posts/entities/post.entity';
 import { Comment } from './entities/comment.entity';
 import { CreateErrors, GetCommentsByPostIdErrors } from './errors/errors';
+import { JWTRequest } from 'src/guards/interfaces/interfaces';
 
 @Injectable()
 export class CommentsService {
@@ -15,10 +16,15 @@ export class CommentsService {
     @InjectRepository(Comment) private commentsRepository: Repository<Comment>,
   ) {}
 
-  async create(createCommentDto: CreateCommentDto) {
+  async create(
+    createCommentDto: CreateCommentDto,
+    req: JWTRequest,
+  ): Promise<Comment> {
+    const userIdFromJwt = req.user.id;
+
     const checkUser = await this.usersRepository.findOne({
       where: {
-        id: createCommentDto.userId,
+        id: userIdFromJwt,
       },
     });
 
@@ -46,7 +52,6 @@ export class CommentsService {
 
     return savedComment;
   }
-
   async getCommentsByPostId(postId: number): Promise<Comment[]> {
     const checkPost = await this.postsRepository.findOne({
       where: {

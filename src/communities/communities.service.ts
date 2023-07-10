@@ -9,6 +9,7 @@ import {
   GetCommunityByCommunityNameErrors,
   GetCreatedCommunitiesByUserErrors,
 } from './errors/errors';
+import { JWTRequest } from 'src/guards/interfaces/interfaces';
 
 @Injectable()
 export class CommunitiesService {
@@ -19,10 +20,15 @@ export class CommunitiesService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async create(createCommunityDto: CreateCommunityDto): Promise<Community> {
+  async create(
+    createCommunityDto: CreateCommunityDto,
+    req: JWTRequest,
+  ): Promise<Community> {
+    const userIdFromJwt = req.user.id;
+
     const checkUser = await this.usersRepository.findOne({
       where: {
-        id: createCommunityDto.creatorId,
+        id: userIdFromJwt,
       },
     });
 

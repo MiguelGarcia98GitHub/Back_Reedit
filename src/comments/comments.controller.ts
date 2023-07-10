@@ -6,9 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Request,
+  HttpCode,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
+import { JwtAuthGuard } from 'src/guards/JwtAuthGuard';
+import { JWTRequest } from 'src/guards/interfaces/interfaces';
 
 @Controller('comments')
 export class CommentsController {
@@ -19,8 +24,13 @@ export class CommentsController {
     return this.commentsService.getCommentsByPostId(postId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createCommentDto: CreateCommentDto) {
-    return this.commentsService.create(createCommentDto);
+  @HttpCode(201)
+  create(
+    @Body() createCommentDto: CreateCommentDto,
+    @Request() req: JWTRequest,
+  ) {
+    return this.commentsService.create(createCommentDto, req);
   }
 }
