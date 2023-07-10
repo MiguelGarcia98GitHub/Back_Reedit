@@ -14,9 +14,5 @@ export class CreatePostDto {
 
   @IsNotEmpty()
   @IsInt()
-  creatorId: number;
-
-  @IsNotEmpty()
-  @IsInt()
   communityId: number;
 }
