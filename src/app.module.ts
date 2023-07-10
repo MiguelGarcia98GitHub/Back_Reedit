@@ -29,6 +29,11 @@ import { Comment } from './comments/entities/comment.entity';
         // console.log('user_name:', configService.get<string>('user_name'));
         // console.log('password:', configService.get<string>('password'));
         // console.log('port:', configService.get<number>('port'));
+        // console.log(
+        //   'jwt_secret_encryption_key:',
+        //   configService.get<string>('jwt_secret_encryption_key'),
+        // );
+        // console.log('backend_port:', configService.get<number>('backend_port'));
 
         return {
           type: 'mysql',
@@ -37,6 +42,9 @@ import { Comment } from './comments/entities/comment.entity';
           username: configService.get<string>('user_name'),
           password: configService.get<string>('password'),
           port: configService.get<number>('port'),
+          jwt_secret_encryption_key:
+            configService.get<string>('jwt_encryption_key'),
+          backend_port: configService.get<number>('backend_port'),
           // ssl: {
           //   rejectUnauthorized: false,
           // },
