@@ -41,10 +41,8 @@ import { Comment } from './comments/entities/comment.entity';
           database: configService.get<string>('database'),
           username: configService.get<string>('user_name'),
           password: configService.get<string>('password'),
-          port: configService.get<number>('port'),
-          jwt_secret_encryption_key:
-            configService.get<string>('jwt_encryption_key'),
-          backend_port: configService.get<number>('backend_port'),
+          port: configService.get<number>('db_port'),
+
           // ssl: {
           //   rejectUnauthorized: false,
           // },
