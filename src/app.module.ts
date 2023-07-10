@@ -24,23 +24,14 @@ import { Comment } from './comments/entities/comment.entity';
       useFactory: (configService: ConfigService) => {
         // check that .env variables are being injected successfully
         // check that .env variables are being injected successfully
-        // console.log('host_name:', configService.get<string>('host_name'));
-        // console.log('database:', configService.get<string>('database'));
-        // console.log('user_name:', configService.get<string>('user_name'));
-        // console.log('password:', configService.get<string>('password'));
-        // console.log('port:', configService.get<number>('port'));
-        // console.log(
-        //   'jwt_secret_encryption_key:',
-        //   configService.get<string>('jwt_secret_encryption_key'),
-        // );
-        // console.log('backend_port:', configService.get<number>('backend_port'));
+        // console.log('db_host_name:', configService.get<string>('db_host_name'));
 
         return {
           type: 'mysql',
-          host: configService.get<string>('host_name'),
-          database: configService.get<string>('database'),
-          username: configService.get<string>('user_name'),
-          password: configService.get<string>('password'),
+          host: configService.get<string>('db_host_name'),
+          database: configService.get<string>('db'),
+          username: configService.get<string>('db_user_name'),
+          password: configService.get<string>('db_password'),
           port: configService.get<number>('db_port'),
           // ssl: {
           //   rejectUnauthorized: false,
